@@ -1,0 +1,15 @@
+FROM node:21-slim
+
+# openssl is a prisma dependency
+# procps is a linux command to manage processes 
+# -> used on nestjs/cli
+RUN apt update && apt install -y openssl procps
+
+RUN npm install -g @nestjs/cli@10.3.2
+
+WORKDIR /home/node/app
+
+USER node
+
+# Keep the container running
+CMD tail -f /dev/null
